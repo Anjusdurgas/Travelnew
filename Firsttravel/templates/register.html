@@ -28,12 +28,17 @@
 
                  <form action="" method="post" class="mx-1 mx-md-4">
                     {%csrf_token %}
+                     {% if error %}
+                     <div class="alert alert-danger" role="alert">
+                         <h6 style="color:red">{{error}}</h6>
+                     </div>
+                     {% endif %}
                   <div class="d-flex flex-row align-items-center mb-1">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
 
                       <div><label class="form-label" for="form3Example1c1">Enter your username</label></div>
-                      <div><input type="text" name="username" class="form-control" /></div>
+                      <div><input type="text" name="username" class="form-control" value="{{values.username}}"/></div>
                     </div>
                   </div>
 
@@ -42,7 +47,7 @@
                     <div class="form-outline flex-fill mb-0">
 
                       <label class="form-label" for="form3Example1c2">Enter your first name</label>
-                        <input type="text" name="firstname" class="form-control" />
+                        <input type="text" name="firstname" class="form-control" value="{{values.firstname}}" />
                     </div>
                   </div>
 
@@ -51,7 +56,7 @@
                     <div class="form-outline flex-fill mb-0">
 
                       <label class="form-label" for="form3Example1c3">Enter your last name:</label>
-                         <input type="text" name="lastname" class="form-control" />
+                         <input type="text" name="lastname" class="form-control" value="{{values.lastname}}" />
                     </div>
                   </div>
 
@@ -60,7 +65,7 @@
                     <div class="form-outline flex-fill mb-0">
 
                       <label class="form-label" for="form3Example3c">Enter Your Email</label>
-                        <input type="email" name="email" class="form-control" />
+                        <input type="email" name="email" class="form-control" value="{{values.email}}" />
                     </div>
                   </div>
 
@@ -91,8 +96,8 @@
 
                   <div class="d-flex justify-content-left mx-4 mb-0 mb-lg-4">
                     <input type="submit" value="Register" class="btn btn-primary btn-lg">
-                {% for i in messages %}
-                 <h6>   {{i}}</h6>
+                {% for i in context %}
+                 <h6>   {{i.messages}}</h6>
                  {% endfor %}
                   </div>
 
